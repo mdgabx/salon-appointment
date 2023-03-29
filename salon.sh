@@ -15,6 +15,26 @@ MAIN_MENU() {
     echo "$SERVICE_ID) $NAME"
   done  
 
+  echo -e "\nChoose service to be scheduled"
+
+  read SERVICE_ID_SELECTED
+
+  if [[ ! $SERVICE_ID_SELECTED =~ ^[0-5]$ ]]
+  then
+    MAIN_MENU
+  else 
+
+    echo -e "\nEnter your phone number"
+    read CUSTOMER_PHONE
+
+    echo -e "\nEnter your name"
+    read CUSTOMER_NAME
+
+    echo -e "\nEnter time to be scheduled"
+    read SERVICE_TIME
+
+  fi
+
 }
 
 MAIN_MENU
