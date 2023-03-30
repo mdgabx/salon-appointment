@@ -26,6 +26,8 @@ MAIN_MENU() {
 
     echo -e "\nEnter your phone number"
     read CUSTOMER_PHONE
+    
+    if [[ -z ]]
 
     echo -e "\nEnter your name"
     read CUSTOMER_NAME
