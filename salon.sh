@@ -33,18 +33,34 @@ MAIN_MENU() {
 
       # check if phone number exist
 
-      CHECK_PHONE_EXIST=$($PSQL "SELECT customer_id FROM customers WHERE phone='$CUSTOMER_PHONE'")
+      CHECK_PHONE_EXIST=$($PSQL "SELECT phone FROM customers WHERE phone='$CUSTOMER_PHONE'")
 
      if [[ -z $CHECK_PHONE_EXIST ]]
      then
-        echo "phone doesn't exist"
+
+        # Enter name if phone doesn't exist
+        echo -e "\nEnter your name"
+
+        read CUSTOMER_NAME
+
+        echo -e "\nEnter appointment time"
+
+        read SERVICE_TIME
+
+        INSERT_CUSTOMER=$($PSQL "INSERT INTO customers(name, phone) VALUES('$CUSTOMER_NAME', '$CUSTOMER_PHONE')")
+
+        GET_CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone='$CUSTOMER_PHONE'")
+
+        echo "$GET_CUSTOMER_ID $CUSTOMER_PHONE $CUSTOMER_NAME $SERVICE_TIME $SERVICE_ID_SELECTED"
+
+        # INSERT_APPOINTMENT=$($PSQL "INSERT INTO appointments")
+
       else 
         echo "phone exist"
      fi
 
-     # read CUSTOMER_NAME
 
-     # read SERVICE_TIME
+
   fi
 
 
