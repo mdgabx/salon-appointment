@@ -51,9 +51,9 @@ MAIN_MENU() {
 
         GET_CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone='$CUSTOMER_PHONE'")
 
-        echo "$GET_CUSTOMER_ID $CUSTOMER_PHONE $CUSTOMER_NAME $SERVICE_TIME $SERVICE_ID_SELECTED"
+        INSERT_RESULT_APPOINTMENT=$($PSQL "INSERT INTO appointments(customer_id, service_id, time) VALUES($GET_CUSTOMER_ID, $SERVICE_ID_SELECTED, '$SERVICE_TIME')")
 
-        # INSERT_APPOINTMENT=$($PSQL "INSERT INTO appointments")
+        echo $INSERT_RESULT_APPOINTMENT
 
       else 
         echo "phone exist"
