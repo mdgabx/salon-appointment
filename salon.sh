@@ -53,7 +53,16 @@ MAIN_MENU() {
 
         INSERT_RESULT_APPOINTMENT=$($PSQL "INSERT INTO appointments(customer_id, service_id, time) VALUES($GET_CUSTOMER_ID, $SERVICE_ID_SELECTED, '$SERVICE_TIME')")
 
-        echo $INSERT_RESULT_APPOINTMENT
+      
+        case $SERVICE_ID_SELECTED in 
+            1) SERVICE='cut';;
+            2) SERVICE='color';;
+            3) SERVICE='perm';;
+            4) SERVICE='style';;
+            5) SERVICE='trim';;
+        esac
+
+        echo -e "\nI have put you down for a $SERVICE at $SERVICE_TIME, $CUSTOMER_NAME."
 
       else 
         echo "phone exist"
